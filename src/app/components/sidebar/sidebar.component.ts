@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MiniPost} from "../minipost/minipost.component";
 
 @Component({
   selector: 'app-sidebar',
@@ -24,6 +25,10 @@ export class SidebarComponent {
     this.miniPostDefault.description = "Try Me"
   }
 
+  alertDescription(): void {
+    alert(this.description)
+  }
+
 }
 
 class MiniPostClass {
@@ -47,9 +52,3 @@ class MiniPostClassDefault {
   description: string = "";
 }
 
-interface MiniPost {
-  href: string;
-  src: string;
-  alt?: string;
-  description: string;
-}
