@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MinipostComponent } from './components/minipost/minipost.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    MinipostComponent
+    MinipostComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
