@@ -29,6 +29,10 @@ export class SidebarComponent {
     alert(this.description)
   }
 
+  setDescription(texte: string) {
+    this.description = texte;
+  }
+
 }
 
 class MiniPostClass {

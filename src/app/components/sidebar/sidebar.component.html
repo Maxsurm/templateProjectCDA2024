@@ -3,7 +3,7 @@
   <div class="inner">
 
     <!-- Search -->
-    <app-search></app-search>
+    <app-search [texte]="description" (textChange)="setDescription($event)"></app-search>
 
     <!-- Menu -->
     <nav id="menu">
