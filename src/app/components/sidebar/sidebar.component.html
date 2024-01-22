@@ -63,6 +63,7 @@
           <a [href]="miniPost.href" class="image"><img src="assets/images/{{miniPost.src}}" alt="{{miniPost.alt}}" /></a>
           <p>{{miniPost.description}}</p>
         </article>
+        <app-minipost [article]="miniPost"></app-minipost>
       </div>
       <ul class="actions">
         <li><a href="#" class="button" (click)="alertDescription()">More</a></li>

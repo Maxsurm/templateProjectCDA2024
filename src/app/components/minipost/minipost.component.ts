@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-minipost',
   templateUrl: './minipost.component.html',
   styleUrls: ['./minipost.component.css']
 })
 export class MinipostComponent {
-  miniPost: MiniPost = {
+
+  @Input() // Prépare le composant à recevoir une information lors de son appel
+  article: MiniPost = {
     description: "",
     href: "#",
     src: "pic01.jpg",
