@@ -3,6 +3,7 @@
 
 <section id="search" class="alt">
   <form method="post" action="#">
-    <input type="text" name="query" id="query" placeholder="Search" [value]="texte" (change)="logValue($event)"/>
+    <input type="text" name="query" id="query" placeholder="Search" [(ngModel)]="texte" (change)="logValue()"/>
+    <p>{{texte}}</p>
   </form>
 </section>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MinipostComponent } from './components/minipost/minipost.component';
 import { SearchComponent } from './components/search/search.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SearchComponent } from './components/search/search.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
