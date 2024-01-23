@@ -8,6 +8,7 @@ import { MinipostComponent } from './components/minipost/minipost.component';
 import { SearchComponent } from './components/search/search.component';
 import {FormsModule} from "@angular/forms";
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     SidebarComponent,
     MinipostComponent,
     SearchComponent,
-    TruncatePipe
+    TruncatePipe,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
