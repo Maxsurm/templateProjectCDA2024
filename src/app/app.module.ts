@@ -7,13 +7,15 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MinipostComponent } from './components/minipost/minipost.component';
 import { SearchComponent } from './components/search/search.component';
 import {FormsModule} from "@angular/forms";
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     MinipostComponent,
-    SearchComponent
+    SearchComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

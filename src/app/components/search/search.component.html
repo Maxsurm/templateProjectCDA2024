@@ -2,8 +2,9 @@
 
 
 <section id="search" class="alt">
-  <form method="post" action="#">
+  <form method="post" action="#" >
     <input type="text" name="query" id="query" placeholder="Search" [(ngModel)]="texte" (change)="logValue()"/>
-    <p>{{texte}}</p>
+    <p>{{ texte.substring(0,15) }}</p>
+    <p>{{date | date:'medium'}}</p>
   </form>
 </section>
