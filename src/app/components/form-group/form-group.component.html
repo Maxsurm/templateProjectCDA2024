@@ -1,1 +1,27 @@
-<p>form-group works!</p>
+<form (submit)="onSubmit()">
+    <label>
+        Titre :
+        <input [class.invalid]="" type="text" name="titre">
+    </label>
+    <p >Le titre doit avoir entre 5 et 10 caractères</p>
+    <label>
+        Lien :
+        <input [class.invalid]="" type="text" name="lien"  >
+    </label>
+    <p >Le lien est requis</p>
+    <label>
+        Image Source :
+        <input type="text" name="src">
+    </label>
+    <label>
+        Image Alt :
+        <input  [class.invalid]="" type="text" name="alt">
+    </label>
+    <p >La desciption alternative est requise</p>
+    <label>
+        Description :
+        <textarea [class.invalid]="" name="description"></textarea>
+    </label>
+    <p >La desciption est requise</p>
+    <input [disabled]="" type="submit" value="Enregister">
+</form>
