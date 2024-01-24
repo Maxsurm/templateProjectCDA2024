@@ -11,6 +11,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { ArticleComponent } from './components/article/article.component';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
+import { FormGroupComponent } from './components/form-group/form-group.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormControlComponent } from './components/form-control/form-control.com
     TruncatePipe,
     ArticleComponent,
     FormulaireComponent,
-    FormControlComponent
+    FormControlComponent,
+    FormGroupComponent
   ],
   imports: [
     BrowserModule,

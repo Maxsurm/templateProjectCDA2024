@@ -1,6 +1,14 @@
 <label>
     Titre :
-    <input type="text" name="titre" [formControl]="titre">
+    <input [class.invalid]="invalid" type="text" name="titre" [formControl]="titre">
+    <p *ngIf="invalid" [style.color]="'red'">Titre invalide</p>
+    <p *ngIf="titre.touched && titre.hasError('required')" [style.color]="'red'">Le titre est requis.</p>
+    <p *ngIf="titre.hasError('minlength')" [style.color]="'red'">Le titre doit contenir au moins 10 caractères.</p>
+    <p *ngIf="titre.hasError('maxlength')" [style.color]="'red'">Le titre doit contenir moins de 50 caractères.</p>
 </label>
+
 <p>Titre : {{titre.value}}</p>
-<button class="button">Enregistrer</button>
+<p>Invalid : {{titre.invalid}}</p>
+<p>Touched : {{titre.touched}}</p>
+<p>Dirty : {{titre.dirty}}</p>
+<button class="button" [disabled]="titre.invalid" (click)="onSubmit()">Enregistrer</button>
