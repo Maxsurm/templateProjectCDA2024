@@ -1,0 +1,27 @@
+<form (submit)="onSubmit(form.checkValidity())" #form>
+    <label>
+        Titre :
+        <input #titre [class.invalid]="!titre.checkValidity()" type="text" name="titre" [(ngModel)]="article.titre" minlength="5" maxlength="10" required>
+    </label>
+    <p *ngIf="!titre.checkValidity()">Le titre doit avoir entre 5 et 10 caractères</p>
+    <label>
+        Lien :
+        <input #lien [class.invalid]="!lien.checkValidity()" type="text" name="lien" [(ngModel)]="article.postLink" required>
+    </label>
+    <p *ngIf="!lien.checkValidity()">Le lien est requis</p>
+    <label>
+        Image Source :
+        <input type="text" name="src" [(ngModel)]="article.imageSrc">
+    </label>
+    <label>
+        Image Alt :
+        <input #alt [class.invalid]="!alt.checkValidity()" type="text" name="alt" [(ngModel)]="article.imageAlt" required>
+    </label>
+    <p *ngIf="!alt.checkValidity()">La desciption alternative est requise</p>
+    <label>
+        Description :
+        <textarea #descr [class.invalid]="!descr.checkValidity()" name="description" [(ngModel)]="article.description" required></textarea>
+    </label>
+    <p *ngIf="!descr.checkValidity()">La desciption est requise</p>
+    <input [disabled]="!form.checkValidity()" type="submit" value="Enregister">
+</form>

@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MinipostComponent } from './components/minipost/minipost.component';
 import { SearchComponent } from './components/search/search.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ArticleComponent } from './components/article/article.component';
+import { FormulaireComponent } from './components/formulaire/formulaire.component';
+import { FormControlComponent } from './components/form-control/form-control.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,14 @@ import { ArticleComponent } from './components/article/article.component';
     MinipostComponent,
     SearchComponent,
     TruncatePipe,
-    ArticleComponent
+    ArticleComponent,
+    FormulaireComponent,
+    FormControlComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
