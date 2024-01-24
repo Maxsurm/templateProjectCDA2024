@@ -1,27 +1,32 @@
-<form (submit)="onSubmit()">
+<form (submit)="onSubmit()" [formGroup]="form">
     <label>
         Titre :
-        <input [class.invalid]="" type="text" name="titre">
+        <input [class.invalid]="isControlInvalid('titre')" type="text" name="titre" formControlName="titre">
     </label>
-    <p >Le titre doit avoir entre 5 et 10 caractères</p>
+    <p *ngIf="isControlInvalid('titre')">Le titre est invalide</p>
+    
+    <p *ngIf="hasError('titre', 'required')" [style.color]="'red'">Le titre est requis.</p>
+    <p *ngIf="hasError('titre', 'minlength')" [style.color]="'red'">Le titre doit contenir au moins 10 caractères.</p>
+    <p *ngIf="hasError('titre', 'maxlength')" [style.color]="'red'">Le titre doit contenir moins de 50 caractères.</p>
     <label>
         Lien :
-        <input [class.invalid]="" type="text" name="lien"  >
+        <input [class.invalid]="isControlInvalid('postLink')" type="text" name="lien" formControlName="postLink">
     </label>
-    <p >Le lien est requis</p>
+    <p *ngIf="isControlInvalid('postLink')">Le lien est requis</p>
     <label>
         Image Source :
-        <input type="text" name="src">
+        <input type="text" name="src" formControlName="imageSrc">
     </label>
     <label>
         Image Alt :
-        <input  [class.invalid]="" type="text" name="alt">
+        <input  [class.invalid]="isControlInvalid('imageAlt')" type="text" name="alt" formControlName="imageAlt">
     </label>
-    <p >La desciption alternative est requise</p>
+    <p *ngIf="isControlInvalid('imageAlt')">La desciption alternative est requise</p>
     <label>
         Description :
-        <textarea [class.invalid]="" name="description"></textarea>
+        <textarea [class.invalid]="isControlInvalid('description')" name="description" formControlName="description"></textarea>
     </label>
-    <p >La desciption est requise</p>
-    <input [disabled]="" type="submit" value="Enregister">
+    <p *ngIf="isControlInvalid('description')">La desciption est requise</p>
+    <input [disabled]="form.invalid" type="submit" value="Enregister">
 </form>
+<p>{{jsonValue}}</p>
