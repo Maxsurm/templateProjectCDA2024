@@ -12,6 +12,8 @@ import { ArticleComponent } from './components/article/article.component';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
 import { FormGroupComponent } from './components/form-group/form-group.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FormGroupComponent } from './components/form-group/form-group.component
     ArticleComponent,
     FormulaireComponent,
     FormControlComponent,
-    FormGroupComponent
+    FormGroupComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

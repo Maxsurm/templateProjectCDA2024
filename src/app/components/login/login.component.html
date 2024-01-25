@@ -1,0 +1,10 @@
+<form (submit)="handleSubmit(form.checkValidity())" #form>
+  <label> Email :
+    <input type="email" name="mail" required [(ngModel)]="mail">
+  </label>
+  <label> Password :
+    <input type="text" name="href" required [(ngModel)]="password">
+  </label>
+  <input type="submit" value="Enregistrer" [disabled]="!form.checkValidity()">
+</form>
+
