@@ -13,12 +13,15 @@ const routes: Routes = [
   {path: "formulaire", children: [
     {path: "", component: FormulaireComponent},
     {path: "control", component: FormControlComponent},
-    {path: "group", component: FormGroupComponent},
+    {path: "group", children: [
+      {path:":id", component: FormGroupComponent},
+      {path: "", redirectTo: "0", pathMatch: "prefix"}
+    ]},
   ]},
   {path: "auth", component:AuthComponent, children: [
     {path:"login", component: LoginComponent},
     {path: "register", component: RegisterComponent},
-    {path: '**', redirectTo:"/auth/login", pathMatch: 'full'},
+    {path: '**', redirectTo:"/auth/login", pathMatch: 'full'}
   ]},
   {path: "**", redirectTo:"/", pathMatch: 'full'}
 ];

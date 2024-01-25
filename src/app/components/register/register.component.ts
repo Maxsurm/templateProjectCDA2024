@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 import { getFormControl, hasControlError, isControlInvalid, mustMatch } from 'src/app/tools/reactive-form-tools';
 
 @Component({
@@ -19,13 +20,14 @@ export class RegisterComponent {
     password:   this.password
   })
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   handleSubmit() {
     // Toujours en premier
     if(this.form.valid) {
       console.log(this.form.value)
+      this.router.navigate(['/auth/login'])
     }
   }
 

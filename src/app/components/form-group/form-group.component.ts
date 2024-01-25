@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ArticleService } from 'src/app/services/article.service';
 import { getFormControl, hasControlError, isControlInvalid } from 'src/app/tools/reactive-form-tools';
 
 @Component({
@@ -18,9 +20,16 @@ export class FormGroupComponent {
     postLink: new FormControl("#", [Validators.required])
   });
 
+  constructor(private router: Router, private service: ArticleService, route: ActivatedRoute) {
+    const id = route.snapshot.paramMap.get('id') || "0";
+    const article = service.findById(+id)
+    if(article) this.form.patchValue(article);
+  }
+
   onSubmit() {
     if(this.form.valid) {
-      console.log("Article : ", this.form.value)
+      this.service.save(this.form.value)
+      this.router.navigate(['/'])
     }
   }
 
