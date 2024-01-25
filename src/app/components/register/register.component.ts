@@ -9,6 +9,8 @@ import { getFormControl, hasControlError, isControlInvalid, mustMatch } from 'sr
 })
 export class RegisterComponent {
 
+  visible: boolean = false;
+
   password: FormControl = new FormControl('', [Validators.required, Validators.minLength(8)])
   confirmPassword: FormControl = new FormControl('', [Validators.required, mustMatch(this.password)])
   form : FormGroup = new FormGroup<any>({

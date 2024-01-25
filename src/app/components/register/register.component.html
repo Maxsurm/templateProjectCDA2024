@@ -9,13 +9,14 @@
     <p *ngIf="hasError('email','email')">Le format ne corresponds pas</p>
   </label>
   <label> Password :
-    <input [class.invalid]="isInvalid('password')"  type="password" name="src" formControlName="password">
+    <input [class.invalid]="isInvalid('password')"  [type]="visible ? 'text' : 'password'" name="src" formControlName="password">
     <p *ngIf="hasError('password','required')">Le mot de passe est requis</p>
     <p *ngIf="hasError('password','minlength')">Le mot de passe doit avoir minimum 8 caractères</p>
     <p *ngIf="dontMatch()">Les mots de passe ne correspondent pas</p>
   </label>
+  <button class="button" (click)="visible = !visible">Voir</button>
   <label> Confirm Password :
-    <input [class.invalid]="confirmPassword.touched && confirmPassword.invalid" type="text" name="text" [formControl]="confirmPassword">
+    <input [class.invalid]="confirmPassword.touched && confirmPassword.invalid" [type]="visible ? 'text' : 'password'" name="text" [formControl]="confirmPassword">
     <p *ngIf="confirmPassword.touched && confirmPassword.hasError('required')">La confirmation est requise</p>
     <p *ngIf="hasControlError(confirmPassword,'mustmatch')">Les mots de passe ne correspondent pas</p>
   </label>
