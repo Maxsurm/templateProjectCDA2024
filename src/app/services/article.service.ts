@@ -49,6 +49,7 @@ export class ArticleService {
       postLink: "#"
     },
     {
+      id: 5,
       titre: "Amet varius aliquam",
       description: "Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.",
       imageSrc: "pic06.jpg",
@@ -72,6 +73,6 @@ export class ArticleService {
   }
 
   update(article: Article) {
-    
+
   }
 }

@@ -19,8 +19,8 @@ const routes: Routes = [
     ]},
   ]},
   {path: "auth", component:AuthComponent, children: [
-    {path:"login", component: LoginComponent},
-    {path: "register", component: RegisterComponent},
+    {path:"login", component: LoginComponent, outlet: "authOutlet"},
+    {path: "register", component: RegisterComponent, outlet: "authOutlet"},
     {path: '**', redirectTo:"/auth/login", pathMatch: 'full'}
   ]},
   {path: "**", redirectTo:"/", pathMatch: 'full'}
