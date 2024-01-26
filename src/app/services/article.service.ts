@@ -60,7 +60,7 @@ export class ArticleService {
       postLink: "#"
     }]
 
-  private ENDPOINT = environment.API_URL + "/articles"
+  private ENDPOINT = environment.API_URL + "/664/articles"
 
   constructor(private http: HttpClient) { }
 

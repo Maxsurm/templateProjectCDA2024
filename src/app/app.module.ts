@@ -16,8 +16,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthComponent } from './views/auth/auth.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { HotToastModule } from '@ngneat/hot-toast';
+import { AuthInterceptor } from './tools/auth.interceptor';
 
 
 @NgModule({
@@ -46,7 +47,9 @@ import { HotToastModule } from '@ngneat/hot-toast';
     }),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [// Fournir manuellement des éléments au contexte
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

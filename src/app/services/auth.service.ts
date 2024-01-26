@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { AuthResponse } from '../models/auth-response';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
   }
 
   get token() : string | undefined {
-    return this.currentResponse.value?.acessToken
+    return this.currentResponse.value?.accessToken
   }
 
   get isLogged() : boolean {
@@ -27,7 +28,7 @@ export class AuthService {
 
   private AUTH_KEY = "AUTH_RESPONSE"
 
-  constructor(private http: HttpClient, private toast: HotToastService) {
+  constructor(private http: HttpClient, private toast: HotToastService, private router: Router) {
     const sessionAuth = sessionStorage.getItem(this.AUTH_KEY)
     if (sessionAuth) this.currentResponse.next(JSON.parse(sessionAuth))
     this.currentResponse.subscribe(response => {
@@ -57,5 +58,6 @@ export class AuthService {
 
   logout() {
     this.currentResponse.next(undefined)
+    this.router.navigate(['/auth', {outlets: {'authOutlet' : 'login'}}])
   }
 }

@@ -44,7 +44,7 @@ export class FormGroupComponent {
       /*const method = this.form.value.id ? this.service.update : this.service.save
       method(this.form.value).subscribe(() => this.router.navigate(['/']))*/
 
-      (this.form.value.id ? this.service.update : this.service.save)(this.form.value).subscribe(() => this.router.navigate(['/']))
+      (this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)).subscribe(() => this.router.navigate(['/']))
     }
   }
 
