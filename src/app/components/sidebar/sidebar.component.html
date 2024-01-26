@@ -12,31 +12,21 @@
       </header>
       <ul>
         <li><a routerLink="/">Homepage</a></li>
-        <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'login'}}]">Log In</a></li>
-        <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'register'}}]">Register</a></li>
-        <li>
-          <span class="opener">Submenu</span>
-          <ul>
-            <li><a href="#">Lorem Dolor</a></li>
-            <li><a href="#">Ipsum Adipiscing</a></li>
-            <li><a href="#">Tempus Magna</a></li>
-            <li><a href="#">Feugiat Veroeros</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Etiam Dolore</a></li>
-        <li><a href="#">Adipiscing</a></li>
-        <li>
-          <span class="opener">Another Submenu</span>
-          <ul>
-            <li><a href="#">Lorem Dolor</a></li>
-            <li><a href="#">Ipsum Adipiscing</a></li>
-            <li><a href="#">Tempus Magna</a></li>
-            <li><a href="#">Feugiat Veroeros</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Maximus Erat</a></li>
-        <li><a href="#">Sapien Mauris</a></li>
-        <li><a href="#">Amet Lacinia</a></li>
+        <ng-container *ngIf="service.isLogged; else public">
+          <li><a (click)="service.logout()">Logout</a></li>
+          <li>
+            <span [class.active]="open" class="opener" (click)="open = !open">Formulaires</span>
+            <ul>
+              <li><a routerLink="/formulaire">NgModel</a></li>
+              <li><a routerLink="/formulaire/control">FormControl</a></li>
+              <li><a routerLink="/formulaire/group">FormGroup</a></li>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-template #public>
+          <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'login'}}]">Log In</a></li>
+          <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'register'}}]">Register</a></li>
+        </ng-template>
       </ul>
     </nav>
 

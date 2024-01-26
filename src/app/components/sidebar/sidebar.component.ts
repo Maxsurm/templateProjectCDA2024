@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MiniPost} from "../minipost/minipost.component";
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +8,8 @@ import {MiniPost} from "../minipost/minipost.component";
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  open: boolean = false
 
   href : string = "#"
   src: string = "pic07.jpg"
@@ -20,7 +23,12 @@ export class SidebarComponent {
     href: "#",
     src: "pic09.jpg",
   }
-  constructor() {
+
+  get isLogged(): boolean {
+    return this.service.isLogged
+  }
+
+  constructor(public service: AuthService) {
     this.miniPostClass.alt = "Alternatif";
     this.miniPostDefault.description = "Try Me"
   }
@@ -32,6 +40,7 @@ export class SidebarComponent {
   setDescription(texte: string) {
     this.description = texte;
   }
+
 
 }
 
