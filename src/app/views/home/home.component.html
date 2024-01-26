@@ -60,7 +60,7 @@
     </header>
     <div class="posts">
       <ng-container *ngFor="let element of (posts | async)">
-        <app-article *ngIf="element.imageSrc" [article]="element"></app-article>
+        <app-article *ngIf="element.imageSrc" [article]="element" (articleDeleted)="getAll()"></app-article>
       </ng-container>
     </div>
   </section>

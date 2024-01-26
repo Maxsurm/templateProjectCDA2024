@@ -3,7 +3,7 @@
       <h3>{{article.titre}}</h3>
       <p>{{article.description}}</p>
     <ul class="actions">
-        <li><a href="#" class="button">More</a></li>
+        <li><button (click)="delete(article.id)" class="button">Supprimer</button></li>
         <li><a routerLink="/formulaire/group/{{article.id}}" class="button">Modifier</a></li>
     </ul>
 </article>

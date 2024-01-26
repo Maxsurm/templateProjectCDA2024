@@ -72,11 +72,15 @@ export class ArticleService {
     return this.http.post<Article>(this.ENDPOINT, article)
   }
 
-  findById(id: number): Article {
-    return this.data.filter(article => article.id === id)[0]
+  findById(id: number): Observable<Article> {
+    return this.http.get<Article>(`${this.ENDPOINT}/${id}`);
   }
 
-  update(article: Article) {
+  update(article: Article) : Observable<Article> {
+    return this.http.put<Article>(`${this.ENDPOINT}/${article.id}`,article);
+  }
 
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.ENDPOINT}/${id}`);
   }
 }

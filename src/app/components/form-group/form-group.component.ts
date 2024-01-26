@@ -22,14 +22,29 @@ export class FormGroupComponent {
 
   constructor(private router: Router, private service: ArticleService, route: ActivatedRoute) {
     const id = route.snapshot.paramMap.get('id') || "0";
-    const article = service.findById(+id)
-    if(article) this.form.patchValue(article);
+    service.findById(+id).subscribe({
+      next: article => {
+        if(article) this.form.patchValue(article)
+      },
+      error: err => console.log(err),
+      complete: () => alert("Complete")
+    })
+
   }
 
   onSubmit() {
     if(this.form.valid) {
-      if(this.form.value.id) this.service.update(this.form.value)
+
+      /*if(this.form.value.id) this.service.update(this.form.value).subscribe(article => this.router.navigate(['/']))
       else this.service.save(this.form.value).subscribe(article => this.router.navigate(['/']))
+*/
+      /*const method = this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)
+      method.subscribe(() => this.router.navigate(['/']))*/
+
+      /*const method = this.form.value.id ? this.service.update : this.service.save
+      method(this.form.value).subscribe(() => this.router.navigate(['/']))*/
+
+      (this.form.value.id ? this.service.update : this.service.save)(this.form.value).subscribe(() => this.router.navigate(['/']))
     }
   }
 
