@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { getFormControl, hasControlError, isControlInvalid, mustMatch } from 'src/app/tools/reactive-form-tools';
 
@@ -30,7 +30,7 @@ export class RegisterComponent {
     if(this.form.valid) {
       this.service.register(this.form.value)
       .subscribe({
-        next: () => this.router.navigate(['/auth/login'])
+        next: () => this.router.navigate(['/auth', {outlets: {'authOutlet' : 'login'}}])
       })
     }
   }

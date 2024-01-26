@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthComponent } from './views/auth/auth.component';
 import {HttpClientModule} from "@angular/common/http";
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -40,6 +41,9 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HotToastModule.forRoot({
+      theme: "snackbar"
+    }),
     AppRoutingModule
   ],
   providers: [],
