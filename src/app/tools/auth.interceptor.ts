@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
       request = request.clone({
         /*headers: {} Remplace TOUS les headers existants présent sur la requête en cours*/
         setHeaders: { // permet d'ajouter OU remplacer un header
-          Authorization : `Bearer ${token}5`
+          Authorization : `Bearer ${token}`
         }
       })
     }
