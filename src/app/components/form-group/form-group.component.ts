@@ -29,8 +29,7 @@ export class FormGroupComponent {
   onSubmit() {
     if(this.form.valid) {
       if(this.form.value.id) this.service.update(this.form.value)
-      else this.service.save(this.form.value)
-      this.router.navigate(['/'])
+      else this.service.save(this.form.value).subscribe(article => this.router.navigate(['/']))
     }
   }
 

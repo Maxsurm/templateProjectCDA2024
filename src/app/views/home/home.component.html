@@ -59,7 +59,7 @@
       <h2>Ipsum sed dolor</h2>
     </header>
     <div class="posts">
-      <ng-container *ngFor="let element of posts">
+      <ng-container *ngFor="let element of (posts | async)">
         <app-article *ngIf="element.imageSrc" [article]="element"></app-article>
       </ng-container>
     </div>

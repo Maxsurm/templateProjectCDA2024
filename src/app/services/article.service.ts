@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -57,15 +60,16 @@ export class ArticleService {
       postLink: "#"
     }]
 
-  constructor() { }
+  private ENDPOINT = environment.API_URL + "/articles"
 
-  all() : Article[] {
-    return this.data;
+  constructor(private http: HttpClient) { }
+
+  all(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.ENDPOINT);
   }
 
-  save(article: Article) {
-    article.id = this.data.length + 1
-    this.data.push(article);
+  save(article: Article): Observable<Article> {
+    return this.http.post<Article>(this.ENDPOINT, article)
   }
 
   findById(id: number): Article {
