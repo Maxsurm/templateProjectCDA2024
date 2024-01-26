@@ -3,7 +3,7 @@ import { Router, RouterModule, Routes, UrlTree } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
-import { FormGroupComponent } from './components/form-group/form-group.component';
+import { FormGroupComponent, articleResolver } from './components/form-group/form-group.component';
 import { AuthComponent } from './views/auth/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
     {path: "", component: FormulaireComponent},
     {path: "control", component: FormControlComponent},
     {path: "group", children: [
-      {path:":id", component: FormGroupComponent},
+      {path:":id", component: FormGroupComponent, resolve: {article: articleResolver}},
       {path: "", redirectTo: "0", pathMatch: "prefix"}
     ]},
   ]},
@@ -29,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: "enabled"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

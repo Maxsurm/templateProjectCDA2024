@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { ArticleService } from 'src/app/services/article.service';
 import { getFormControl, hasControlError, isControlInvalid } from 'src/app/tools/reactive-form-tools';
 
@@ -21,15 +21,19 @@ export class FormGroupComponent {
   });
 
   constructor(private router: Router, private service: ArticleService, route: ActivatedRoute) {
-    const id = route.snapshot.paramMap.get('id') || "0";
+    /*const id = route.snapshot.paramMap.get('id') || "0";
     service.findById(+id).subscribe({
       next: article => {
         if(article) this.form.patchValue(article)
       },
       error: err => console.log(err),
       complete: () => alert("Complete")
+    })*/
+    route.data.subscribe({
+      next: ({article}) => {
+        if(article) this.form.patchValue(article)
+      }
     })
-
   }
 
   onSubmit() {
@@ -71,4 +75,9 @@ export class FormGroupComponent {
   hasError(name: string, errorCode: string) {
     return hasControlError(this.getControl(name), errorCode)
   }
+}
+
+export const articleResolver = (route : ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const id: number = +(route.paramMap.get("id") || "0")
+  return id ? inject(ArticleService).findById(id) : undefined
 }
