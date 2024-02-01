@@ -5,30 +5,30 @@
     <!-- Search -->
     <app-search [(texte)]="description"></app-search>
 
-<!-- Menu -->
-<nav id="menu">
-  <header class="major">
-    <h2>Menu</h2>
-  </header>
-  <ul>
-    <li><a routerLink="/">Homepage</a></li>
-    <ng-container *ngIf="service.isLogged; else public">
-      <li><a (click)="service.logout()">Logout</a></li>
-      <li>
-        <span [class.active]="open" class="opener" (click)="open = !open">Formulaires</span>
-        <ul>
-          <li><a routerLink="/formulaire">NgModel</a></li>
-          <li><a routerLink="/formulaire/control">FormControl</a></li>
-          <li><a routerLink="/formulaire/group">FormGroup</a></li>
-        </ul>
-      </li>
-    </ng-container>
-    <ng-template #public>
-      <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'login'}}]">Log In</a></li>
-      <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'register'}}]">Register</a></li>
-    </ng-template>
-  </ul>
-</nav>
+    <!-- Menu -->
+    <nav id="menu">
+      <header class="major">
+        <h2>Menu</h2>
+      </header>
+      <ul>
+        <li><a routerLink="/">Homepage</a></li>
+        <ng-container *ngIf="service.isLogged; else public">
+          <li><a (click)="service.logout()">Logout</a></li>
+          <li>
+            <span [class.active]="open" class="opener" (click)="open = !open">Formulaires</span>
+            <ul>
+              <li><a routerLink="/formulaire">NgModel</a></li>
+              <li><a routerLink="/formulaire/control">FormControl</a></li>
+              <li><a routerLink="/formulaire/group">FormGroup</a></li>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-template #public>
+          <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'login'}}]">Log In</a></li>
+          <li><a [routerLink]="['/auth', {outlets: {'authOutlet' : 'register'}}]">Register</a></li>
+        </ng-template>
+      </ul>
+    </nav>
 
     <!-- Section -->
     <section>

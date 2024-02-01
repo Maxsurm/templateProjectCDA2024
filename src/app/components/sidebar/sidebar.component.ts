@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent {
 
-  open :boolean = false;
+  open: boolean = false
 
   href : string = "#"
   src: string = "pic07.jpg"
@@ -24,8 +24,8 @@ export class SidebarComponent {
     src: "pic09.jpg",
   }
 
-  get isLogged(): boolean{
-    return this.service.isLogged;
+  get isLogged(): boolean {
+    return this.service.isLogged
   }
 
   constructor(public service: AuthService) {
@@ -40,6 +40,7 @@ export class SidebarComponent {
   setDescription(texte: string) {
     this.description = texte;
   }
+
 
 }
 

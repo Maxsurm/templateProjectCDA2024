@@ -22,7 +22,7 @@ export class RegisterComponent {
     password:   this.password
   })
 
-  constructor( private router: Router, private service: AuthService) {
+  constructor(private router: Router, private service: AuthService) {
   }
 
   handleSubmit() {
@@ -30,7 +30,7 @@ export class RegisterComponent {
     if(this.form.valid) {
       this.service.register(this.form.value)
       .subscribe({
-        next: () => this.router.navigate(['/auth', {outlets: {'authOutlet': 'login'}}])
+        next: () => this.router.navigate(['/auth', {outlets: {'authOutlet' : 'login'}}])
       })
     }
   }

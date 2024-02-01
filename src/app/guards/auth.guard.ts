@@ -7,17 +7,17 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-  constructor(private service : AuthService){}
+  constructor(private service: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.service.isLogged || new UrlTree()
+    
+      return this.service.isLogged || new UrlTree();
   }
   
 }
 
-export const authGuard : CanActivateFn =  (route, state) => {
+export const authGuard : CanActivateFn = (route,state) => {
   return inject(AuthService).isLogged || new UrlTree();
 }

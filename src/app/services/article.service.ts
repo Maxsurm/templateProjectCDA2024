@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
-  data: Article[]= [
+  data: Article[] = [
     {
       titre: "Interdum aenean",
       description: "Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.",
@@ -46,7 +45,6 @@ export class ArticleService {
       postLink: "#"
     },
     {
-      id: 5,
       titre: "Feugiat lorem aenean",
       description: "Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.",
       imageSrc: "pic05.jpg",
@@ -54,6 +52,7 @@ export class ArticleService {
       postLink: "#"
     },
     {
+      id: 5,
       titre: "Amet varius aliquam",
       description: "Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.",
       imageSrc: "pic06.jpg",
@@ -61,14 +60,12 @@ export class ArticleService {
       postLink: "#"
     }]
 
-    private ENDPOINT = environment.API_URL + '/664/articles'
+  private ENDPOINT = environment.API_URL + "/664/articles"
 
-  constructor(
-    private http: HttpClient
-    ) { }
+  constructor(private http: HttpClient) { }
 
   all(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.ENDPOINT)
+    return this.http.get<Article[]>(this.ENDPOINT);
   }
 
   save(article: Article): Observable<Article> {
@@ -76,14 +73,14 @@ export class ArticleService {
   }
 
   findById(id: number): Observable<Article> {
-    return this.http.get<Article>(`${this.ENDPOINT}/${id}`)
+    return this.http.get<Article>(`${this.ENDPOINT}/${id}`);
   }
 
-  update(article: Article): Observable<Article> {
-    return this.http.put<Article>(`${this.ENDPOINT}/${article.id}`,article)
+  update(article: Article) : Observable<Article> {
+    return this.http.put<Article>(`${this.ENDPOINT}/${article.id}`,article);
   }
 
-  delete(id: number){
-    return this.http.delete<never>(`${this.ENDPOINT}/${id}`)
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.ENDPOINT}/${id}`);
   }
 }

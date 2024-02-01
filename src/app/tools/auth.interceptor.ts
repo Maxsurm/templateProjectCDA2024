@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.service.token
     if(token && request.url.startsWith(environment.API_URL)) {
-      request.clone({
+      request = request.clone({
         /*headers: {} Remplace TOUS les headers existants présent sur la requête en cours*/
         setHeaders: { // permet d'ajouter OU remplacer un header
           Authorization : `Bearer ${token}`
@@ -27,9 +27,9 @@ export class AuthInterceptor implements HttpInterceptor {
       })
     }
     return next.handle(request).pipe(catchError(err => {
+      // Pour faire des logs coté serveur
       if(err.status == 401) {
-        this.toast.error("Accès refusé");
-        
+        this.toast.error("Veuillez vous reconnecter")
         this.service.logout()
       }
       return throwError(() => err)

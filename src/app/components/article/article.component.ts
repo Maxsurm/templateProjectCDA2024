@@ -12,16 +12,16 @@ export class ArticleComponent {
   article?: Article
 
   @Output()
-  articleDeleted: EventEmitter<number> = new EventEmitter<number>()
+  articleDeleted: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private service: ArticleService) {
   }
-
-  delete(id: number | undefined) {
-    if (id) {
+  
+  delete(id: number|undefined) {
+    if(id) {
       this.service.delete(id).subscribe({
         next: () => this.articleDeleted.emit(id)
-      })
+      });
     }
   }
 }

@@ -7,5 +7,5 @@ import { Article } from './models/article'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  
 }

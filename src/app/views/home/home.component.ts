@@ -1,5 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { Component } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -11,12 +12,13 @@ import { ArticleService } from 'src/app/services/article.service';
 export class HomeComponent {
   posts: Observable<Article[]> = of([])
 
-    constructor(private service: ArticleService) { 
-      this.getAll()
-    }
+  constructor(private service: ArticleService){
+    this.getAll();
+  }
 
-    getAll(){
-      this.posts = this.service.all()
-    }
+  getAll() {
+    this.posts = this.service.all();
+  }
+
 
 }

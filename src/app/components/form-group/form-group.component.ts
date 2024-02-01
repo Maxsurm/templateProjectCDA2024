@@ -20,30 +20,35 @@ export class FormGroupComponent {
     postLink: new FormControl("#", [Validators.required])
   });
 
-  constructor(private router: Router, private service: ArticleService, route : ActivatedRoute) {
-    const id = route.snapshot.paramMap.get('id') || 0;
+  constructor(private router: Router, private service: ArticleService, route: ActivatedRoute) {
+    /*const id = route.snapshot.paramMap.get('id') || "0";
     service.findById(+id).subscribe({
       next: article => {
         if(article) this.form.patchValue(article)
       },
       error: err => console.log(err),
       complete: () => alert("Complete")
+    })*/
+    route.data.subscribe({
+      next: ({article}) => {
+        if(article) this.form.patchValue(article)
+      }
     })
-    
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      // if(this.form.value.id) this.service.update(this.form.value)
-      // else this.service.save(this.form.value).subscribe(article => this.router.navigate(['/']))
-      // const method = this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)
-      // method.subscribe(() => this.router.navigate(['/']))
+    if(this.form.valid) {
 
-      // const method = this.form.value.id ? this.service.update: this.service.save
-      // method(this.form.value).subscribe(() => this.router.navigate(['/']))
+      /*if(this.form.value.id) this.service.update(this.form.value).subscribe(article => this.router.navigate(['/']))
+      else this.service.save(this.form.value).subscribe(article => this.router.navigate(['/']))
+*/
+      /*const method = this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)
+      method.subscribe(() => this.router.navigate(['/']))*/
 
-      (this.form.value.id ? this.service.update(this.form.value): this.service.save(this.form.value)).subscribe(() => this.router.navigate(['/']))
+      /*const method = this.form.value.id ? this.service.update : this.service.save
+      method(this.form.value).subscribe(() => this.router.navigate(['/']))*/
 
+      (this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)).subscribe(() => this.router.navigate(['/']))
     }
   }
 
@@ -73,6 +78,6 @@ export class FormGroupComponent {
 }
 
 export const articleResolver = (route : ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const id: number = +(route.paramMap.get('id') || "0");
+  const id: number = +(route.paramMap.get("id") || "0")
   return id ? inject(ArticleService).findById(id) : undefined
 }
