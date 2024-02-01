@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "email": "surmontmaxime@gmail.com",
+      "password": "$2a$10$T4Tr81L5D80Jt9chQMzNn.XUhP1G2wwn.Zk3vyJwniSMTHwFC.r5W",
+      "username": "test",
+      "id": 1
+    },
+    {
+      "email": "surmontmaxime2@gmail.com",
+      "password": "$2a$10$CfCAVXWJzt5bYZRBUgOUgOzJBCxE08Kf8Y8iWn60K/D0icAixUm3.",
+      "username": "testtestest",
+      "id": 2
+    },
+    {
+      "email": "test2@test.com",
+      "password": "$2a$10$tykDUue1/N529/5SP9W8mOt.ui0OjnUhmAbLy7xTsHA6uX79rBJAu",
+      "username": "testtest",
+      "id": 3
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "imageSrc": "pic01.jpg",
+      "imageAlt": "Image Alt",
+      "titre": "test1test1test1",
+      "description": "test1test1test1test1test1test1test1test1test1",
+      "postLink": "#"
+    },
+    {
+      "id": 2,
+      "imageSrc": "pic02.jpg",
+      "imageAlt": "Image Alt",
+      "titre": "test2test2test2",
+      "description": "test2test2test2",
+      "postLink": "#"
+    }
+  ]
+}

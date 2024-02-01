@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
+import { map, tap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { getFormControl, hasControlError, isControlInvalid, mustMatch } from 'src/app/tools/reactive-form-tools';
 
 @Component({
@@ -19,13 +22,16 @@ export class RegisterComponent {
     password:   this.password
   })
 
-  constructor() {
+  constructor( private router: Router, private service: AuthService) {
   }
 
   handleSubmit() {
     // Toujours en premier
     if(this.form.valid) {
-      console.log(this.form.value)
+      this.service.register(this.form.value)
+      .subscribe({
+        next: () => this.router.navigate(['/auth', {outlets: {'authOutlet': 'login'}}])
+      })
     }
   }
 

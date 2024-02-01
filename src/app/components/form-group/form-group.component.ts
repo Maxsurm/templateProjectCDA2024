@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { ArticleService } from 'src/app/services/article.service';
 import { getFormControl, hasControlError, isControlInvalid } from 'src/app/tools/reactive-form-tools';
 
 @Component({
@@ -18,9 +20,30 @@ export class FormGroupComponent {
     postLink: new FormControl("#", [Validators.required])
   });
 
+  constructor(private router: Router, private service: ArticleService, route : ActivatedRoute) {
+    const id = route.snapshot.paramMap.get('id') || 0;
+    service.findById(+id).subscribe({
+      next: article => {
+        if(article) this.form.patchValue(article)
+      },
+      error: err => console.log(err),
+      complete: () => alert("Complete")
+    })
+    
+  }
+
   onSubmit() {
-    if(this.form.valid) {
-      console.log("Article : ", this.form.value)
+    if (this.form.valid) {
+      // if(this.form.value.id) this.service.update(this.form.value)
+      // else this.service.save(this.form.value).subscribe(article => this.router.navigate(['/']))
+      // const method = this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)
+      // method.subscribe(() => this.router.navigate(['/']))
+
+      // const method = this.form.value.id ? this.service.update: this.service.save
+      // method(this.form.value).subscribe(() => this.router.navigate(['/']))
+
+      (this.form.value.id ? this.service.update(this.form.value): this.service.save(this.form.value)).subscribe(() => this.router.navigate(['/']))
+
     }
   }
 
@@ -47,4 +70,9 @@ export class FormGroupComponent {
   hasError(name: string, errorCode: string) {
     return hasControlError(this.getControl(name), errorCode)
   }
+}
+
+export const articleResolver = (route : ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const id: number = +(route.paramMap.get('id') || "0");
+  return id ? inject(ArticleService).findById(id) : undefined
 }

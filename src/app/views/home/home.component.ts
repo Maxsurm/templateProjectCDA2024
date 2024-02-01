@@ -1,4 +1,7 @@
+import { Observable, of } from 'rxjs';
 import { Component } from '@angular/core';
+import { Article } from 'src/app/models/article';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  posts: Observable<Article[]> = of([])
+
+    constructor(private service: ArticleService) { 
+      this.getAll()
+    }
+
+    getAll(){
+      this.posts = this.service.all()
+    }
 
 }
